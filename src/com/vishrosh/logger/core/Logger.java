@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
  * 
  * Example: [29/10/2050 18:34:23][com.vishrosh.logger.test.Main.java][Test] Minor Error: This is a test message
  * 
+ * @version 1.0.2
  * @author VishRosh001
  *
  */
