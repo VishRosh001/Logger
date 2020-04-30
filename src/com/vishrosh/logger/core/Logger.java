@@ -1,7 +1,14 @@
 package com.vishrosh.logger.core;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Formatter;
 
 /**
  * This a class that can be used for logging information to the console
@@ -34,7 +41,33 @@ public class Logger {
 	
 	public static final String YELLOW = "\u001B[33m";
 	
-	private Logger() {}
+	public String fileLocation = "";
+	
+	private Logger() {
+		
+	}
+	
+	private void writeToLogFile(String log) {
+		BufferedWriter bw = null;
+		FileWriter fileWriter = null;;
+		try {
+			File logFile = new File("logger.log");
+			fileWriter = new FileWriter(logFile, true);
+			bw = new BufferedWriter(fileWriter);
+			
+			bw.write(log);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(bw != null)bw.close();
+				if(fileWriter != null)fileWriter.close();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	/**
 	 * Setter for source
@@ -193,6 +226,7 @@ public class Logger {
 		
 		a.append(Logger.formatStringWithBrackets(Logger.getCurrentLogger().source));
 		a.append(String.format(" %s: %s%n", errorType, message));
+		Logger.getCurrentLogger().writeToLogFile(a.toString());
 		return a.toString();
 	}
 	
