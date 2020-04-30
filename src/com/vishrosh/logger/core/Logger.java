@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
  * 
  * A normal log follows the following format:<br>
  * [Date Time][The class package/loggerName][Title/source] Level: Message
- * 
+ * <br>
  * Example: [29/10/2050 18:34:23][com.vishrosh.logger.test.Main.java][Test] Minor Error: This is a test message
  * 
  * @version 1.0.2
@@ -55,7 +55,7 @@ public class Logger {
 	/**
 	 * 
 	 * Gets the instance of logger <br>
-	 * This method should only be called after the method, {@link #getLogger(Class)} has been called.
+	 * This method should only be used after the method, {@link #getLogger(Class)}, has been called.
 	 * 
 	 * @return instance of logger
 	 */
@@ -215,6 +215,8 @@ public class Logger {
 	
 	/**
 	 * 
+	 * Setter for the loggerName
+	 * 
 	 * @param clazz 
 	 */
 	@SuppressWarnings("rawtypes")
@@ -230,7 +232,4 @@ public class Logger {
 		Logger.getCurrentLogger().setLevel(level);
 		Logger.getCurrentLogger().setSource(source);
 	}
-	
-	
-	
 }
